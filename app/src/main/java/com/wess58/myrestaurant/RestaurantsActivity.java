@@ -15,6 +15,7 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
        public static final String TAG = RestaurantsActivity.class.getSimpleName();
@@ -34,7 +35,6 @@ public class RestaurantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
-        getRestaurants(location);
 
 
 
@@ -45,7 +45,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location  = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the restaurants near:" + location);
-
+        getRestaurants(location);
 
         //we'll create an ArrayAdapter and set our ListView adapter to the new adapter
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants );
@@ -57,10 +57,11 @@ public class RestaurantsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterViewer, View view, int i, long l) {
                 String restaurant = ((TextView)view).getText().toString();
                 Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_SHORT).show();
-             }
+
+            }
         });
 
-        }
+      }
 
 
         private void getRestaurants(String location) {

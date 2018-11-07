@@ -8,12 +8,11 @@ import okhttp3.Request;
 
 public class YelpService {
 
-    public static void findRestaurants(String location, String term, Callback callback){
+    public static void findRestaurants(String location, Callback callback){
 
         OkHttpClient client = new OkHttpClient();
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
         urlBuilder.addQueryParameter("location", location);
-        urlBuilder.addQueryParameter("term", term);
         String url = urlBuilder.build().toString();
 
 
