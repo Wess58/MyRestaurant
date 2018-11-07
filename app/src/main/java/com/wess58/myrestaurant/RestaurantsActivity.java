@@ -9,11 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import okhttp3.Call;
+import okhttp3.Callback;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RestaurantsActivity extends AppCompatActivity {
+       public static final String TAG = RestaurantsActivity.class.getSimpleName();
 
     @BindView(R.id.textView2) TextView mLocationTextView;
     @BindView(R.id.listView) ListView  mListView;
@@ -30,6 +34,9 @@ public class RestaurantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
+        getRestaurants(location);
+
+
 
 
         // let’s pull the data out of the intent extra in our RestaurantsActivity.
@@ -53,5 +60,30 @@ public class RestaurantsActivity extends AppCompatActivity {
              }
         });
 
+        }
+
+
+        private void getRestaurants(String location) {
+        final YelpService yelpService = new YelpService();
+        yelpService.findRestaurants(location, new Callback() {
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonData = response.body().string();
+                    android.util.Log.v(TAG, jsonData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
-}
+
+
+
+        }
