@@ -1,10 +1,12 @@
-package com.wess58.myrestaurant;
+package com.wess58.myrestaurant.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.wess58.myrestaurant.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

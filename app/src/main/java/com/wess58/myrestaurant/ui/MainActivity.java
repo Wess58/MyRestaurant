@@ -1,4 +1,4 @@
-package com.wess58.myrestaurant;
+package com.wess58.myrestaurant.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.wess58.myrestaurant.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
